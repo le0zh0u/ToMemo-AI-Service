@@ -4,7 +4,7 @@ AI Service for ToMemo
 ## What is ToMemo?
 ToMemo is an iOS Application. 
 
-![ToMemo Guide](https://tomemo.top)
+[ToMemo Guide](https://tomemo.top)
 
 ### Feature
 - Memos 
