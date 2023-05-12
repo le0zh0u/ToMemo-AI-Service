@@ -1,26 +1,37 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token,jwt_required,get_jwt_identity
+from models.apple_transaction_log_model import AppleTransactionLog
+from repository.apple_transaction_log_repository import getByTransactionId
 
-user_controller = Blueprint('user', __name__)
+trans_controller = Blueprint('apple_transaction', __name__)
 
-# @user_controller.route('/jwt/get', method=['POST'])
-# def getJWT():
-#     uniqueUserId = request.json.get('uniqueUserId')
-#     licenseKey = request.json.get('licenseKey')
+@trans_controller.route('/apple/transaction/log/check', method=['POST'])
+def checkTransaction():
+    transactionId = request.json.get('transactionId')
+    originalTransactionId = request.json.get('originalTransactionId')
 
-#     if not uniqueUserId:
-#         return jsonify({"successs":-1, "message":"用户唯一id为空"}), 200
-#     if not licenseKey:
-#         return jsonify({"successs":-1, "message":"LicenseKey为空"}), 200
-
-#     #TODO 是否在黑名单中
+    if not transactionId:
+        return jsonify({"successs":-1, "message":"苹果单据为空"}), 200
+    if not originalTransactionId:
+        return jsonify({"successs":-1, "message":"苹果单据为空"}), 200
     
+    # TODO 从苹果查询订单数据
+
+   # 校验订单是否存在
+    appleTransaction = getByTransactionId()
+    if not appleTransaction:
+        #TODO 订单不存在，新建订单
+        
 
 
-#     # 如果用户存在，则创建 JWT access token
-#     access_token = create_access_token(identity=uniqueUserId)
-#     #TODO 保存jwt到数据库中 userid - jwt
-#     return jsonify(access_token=access_token), 200
+    # TODO 判断订单是否关联LicenseKey
+    
+    
+    # TODO 创建用户测试
+    # 如果用户存在，则创建 JWT access token
+    # access_token = create_access_token(identity=uniqueUserId)
+    #TODO 保存jwt到数据库中 userid - jwt
+    # return jsonify(access_token=access_token), 200
+    return
 
 
 @user_controller.route('/handle/user', methods=['POST'])

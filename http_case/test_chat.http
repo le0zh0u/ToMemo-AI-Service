@@ -1,0 +1,54 @@
+
+### root request
+GET http://127.0.0.1:5000/ HTTP/1.1
+
+### open ai completion
+POST http://127.0.0.1:5000/completions HTTP/1.1
+content-type: application/json
+
+{
+    "message": "tell me what is embedding",
+    "channelSubject": "you are a special AI assistant, you can answer me any question."
+}
+
+### open ai completion
+POST http://127.0.0.1:5000/chat HTTP/1.1
+content-type: application/json
+
+{
+    "messages": [{"role":"user", "content":"tell me what is embedding"}],
+    "channelSubject": "you are a special AI assistant, you can answer me any question."
+}
+
+### handle user
+POST http://127.0.0.1:5000/handle/user HTTP/1.1
+content-type: application/json
+
+{
+    "uniqueUserId": "uniqueUserId",
+    "iCloudRecordUserId": ""
+}
+
+### jwt protected
+GET http://127.0.0.1:5000/protected HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzYyMzE4OSwianRpIjoiOTlkNmJiZDMtYjYxMC00MDRjLTkwMjctMjQyMWE0ZTgxNWNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InVuaXF1ZVVzZXJJZCIsIm5iZiI6MTY4MzYyMzE4OSwiZXhwIjoxNjgzNzA5NTg5fQ.5sijtTuO-XmwuNWPgQb8a6N-JaSvT3ymQ80RgmNgTAQ
+
+###
+GET http://127.0.0.1:5000/getAppJWT HTTP/1.1
+
+# https://api.storekit-sandbox.itunes.apple.com/inApps/v1/lookup/
+### 查询用户订单的收据
+GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/lookup/2000000329169549
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
+
+### 历史单据
+GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/history/2000000329169549
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
+
+### 退款
+GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/refund/lookup/2000000329169549
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
+###
+GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/subscriptions/2000000329169549
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
+

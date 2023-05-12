@@ -6,7 +6,6 @@ ToMemo is an iOS Application.
 
 [ToMemo Guide](https://tomemo.top)
 
-### Feature
 - Memos 
     - Content storage
     - Content category
@@ -23,6 +22,17 @@ ToMemo is an iOS Application.
     - Word split
     - Emoji
     - Auto-back to previous input method after output
+
+### Feature
+
+- OpenAI
+    - Chat
+    - PDF
+    - Docs
+    - Videos
+    - ...
+- Other Models...
+
 
 
 
