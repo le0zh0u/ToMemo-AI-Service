@@ -22,7 +22,6 @@ def generate_transaction(transaction_data):
         environment = transaction_data["environment"],
         in_app_ownership_type = transaction_data["inAppOwnershipType"],
         product_id = transaction_data["productId"],
-        
         quantity = transaction_data["quantity"],
         subscription_group_identifier = transaction_data["subscriptionGroupIdentifier"],
         type = transaction_data["type"],

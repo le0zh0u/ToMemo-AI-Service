@@ -14,8 +14,9 @@ trans_controller = Blueprint('apple_transaction', __name__)
 @trans_controller.route('/sync/apple/transaction', methods=['POST'])
 def syncTransaction():
     original_transaction_id = request.json.get('originalTransactionId')
+    transaction_id = request.json.get('transactionId')
     
-    if not original_transaction_id:
+    if not original_transaction_id or not transaction_id:
         return jsonify({"successs":-1, "message":"苹果单据为空"}), 200, {'Content-Type': 'application/json;charset=utf-8'}
     
     # 将 JSON 数据解析为 Python 字典
