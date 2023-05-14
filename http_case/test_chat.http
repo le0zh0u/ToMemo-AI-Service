@@ -33,22 +33,27 @@ content-type: application/json
 GET http://127.0.0.1:5000/protected HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4MzYyMzE4OSwianRpIjoiOTlkNmJiZDMtYjYxMC00MDRjLTkwMjctMjQyMWE0ZTgxNWNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6InVuaXF1ZVVzZXJJZCIsIm5iZiI6MTY4MzYyMzE4OSwiZXhwIjoxNjgzNzA5NTg5fQ.5sijtTuO-XmwuNWPgQb8a6N-JaSvT3ymQ80RgmNgTAQ
 
-###
-GET http://127.0.0.1:5000/getAppJWT HTTP/1.1
+### 订阅状态
 
-# https://api.storekit-sandbox.itunes.apple.com/inApps/v1/lookup/
-### 查询用户订单的收据
-GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/lookup/2000000329169549
-Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
+POST http://127.0.0.1:5000/sync/apple/transaction HTTP/1.1
+content-type: application/json
 
-### 历史单据
-GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/history/2000000329169549
-Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
-
-### 退款
-GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/refund/lookup/2000000329169549
-Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
-###
-GET https://api.storekit-sandbox.itunes.apple.com/inApps/v1/subscriptions/2000000329169549
-Authorization: Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6IjhETFcyQU0yNUoiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiI2OWE2ZGU5Ni03MDBjLTQ3ZTMtZTA1My01YjhjN2MxMWE0ZDEiLCJpYXQiOjE2ODM4NjYzNjUsImV4cCI6MTY4Mzg2OTk2NSwiYXVkIjoiYXBwc3RvcmVjb25uZWN0LXYxIiwibm9uY2UiOiJmZDg4Y2EwOC05YzkyLTQ5ZWEtYTA2YS0yNDFhZmI2NzlkMjAiLCJiaWQiOiJjb20ubGVvemhvdS5Ub01lbW8ifQ.iKR3aBwXH4hHZS-91MPRUMYK8n4BQIYJsF4x5J10MJhd-JsXDQPOnrgm_NgFcPf5HCPjV_0Go93dCeZv_Fri5g
-
+{
+  "bundleId" : "com.leozhou.ToMemo",
+  "deviceVerification" : "",
+  "deviceVerificationNonce" : "02472eea-9edb-4d46-b57c-358e4cc1576e",
+  "environment" : "Sandbox",
+  "expiresDate" : 1683816843000,
+  "inAppOwnershipType" : "PURCHASED",
+  "offerType" : 1,
+  "originalPurchaseDate" : 1683816670000,
+  "originalTransactionId" : "2000000329169549",
+  "productId" : "com.leozhou.tomemo.subscribe.advanced.yearly",
+  "purchaseDate" : 1683816663000,
+  "quantity" : 1,
+  "signedDate" : 1683816676462,
+  "subscriptionGroupIdentifier" : "21080011",
+  "transactionId" : "2000000329169549",
+  "type" : "Auto-Renewable Subscription",
+  "webOrderLineItemId" : "2000000027145897"
+}
