@@ -3,6 +3,7 @@
 import os
 
 from service.app_store_server_service import get_subscription_status
+from dto.app_store_server.subscription_transaction import SubscriptionStatusGroupTransaction
 
 AI_SUBSCRIPTION_PRODUCT_ID_PREFIX = os.environ.get("AI_SUBSCRIPTION_PRODUCT_ID_PREFIX")
 
@@ -29,12 +30,23 @@ def get_active_subscription_last_transaction(original_transaction_id):
         return
     
     # print(f"check subscription status - last transactions count {len(last_transactions)}")
-    active_last_transactions = [t for t in last_transactions if t.is_active() ]
+    active_last_transactions = [t for t in last_transactions if t.is_active()  ]
     # print(f"check subscription status - active transactions count {len(active_last_transactions)}")
     if len(active_last_transactions) == 0:
         return 
     else:
-        return active_last_transactions[0]
+        return filter_ai_service_subscription_transaction(active_last_transactions)
+    
+def filter_ai_service_subscription_transaction(transactions: list[SubscriptionStatusGroupTransaction]):
+
+    if len(transactions) == 0:
+        return 
+    
+    product_group_id = os.environ.get("AI_SUBSCRIPTION_PRODUCT_GROUP_ID")
+    return [t for t in transactions if t.subscriptionGroupIdentifier == product_group_id ]
+    
+    
+    
     
 
     
