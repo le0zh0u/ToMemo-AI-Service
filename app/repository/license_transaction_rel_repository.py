@@ -9,6 +9,10 @@ def get_by_original_transaction_id(id:str):
     
     license_transaction_rel = LicenseTransactionRel.query.filter_by(original_transaction_id = id).first()
     return license_transaction_rel
+
+def get_license_transaction_rel_by_license_key_id(license_key_id:int):
+    return LicenseTransactionRel.query.filter_by(license_key_id = license_key_id).first()
+    
     
 
 def add_license_transa_rel(apple_transaction_log_id:int, 

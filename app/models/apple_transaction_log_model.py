@@ -25,6 +25,6 @@ class AppleTransactionLog(db.Model):
     offer_type = db.Column(db.Integer, nullable=True)
     offer_identifier = db.Column(db.String(64), nullable=True, default='')
 
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 

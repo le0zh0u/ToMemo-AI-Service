@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from dotenv import find_dotenv, load_dotenv
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager
 from datetime import timedelta
 import os
 from db.db import connect_to_mysql, mysql
@@ -10,6 +10,9 @@ from utils.apple_store_kit import get_request_token
 from controller.user_controller import user_controller
 from controller.gpt_controller import gpt_controller
 from controller.apple_transaction_controller import trans_controller
+from controller.license_key_admin_controller import license_key_admin_controller
+from controller.license_key_controller import license_key_controller
+from controller.jwt_controller import jwt_controller
 
 from models.apple_transaction_log_model import AppleTransactionLog
 
@@ -19,6 +22,9 @@ jwt = JWTManager(app)
 app.register_blueprint(user_controller)
 app.register_blueprint(gpt_controller)
 app.register_blueprint(trans_controller)
+app.register_blueprint(license_key_admin_controller)
+app.register_blueprint(license_key_controller)
+app.register_blueprint(jwt_controller)
 
 load_dotenv(find_dotenv()) # 从 .env 文件中加载环境变量
 
@@ -28,13 +34,20 @@ app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=1)  # 设置访问令牌
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.environ.get("SQLALCHEMY_TRACK_MODIFICATIONS")
 
+app.config['JSON_AS_ASCII'] = False
+
 # init db
 connect_to_mysql(app)
+
+@app.errorhandler(401)
+def unauthorized(error):
+    return make_response(jsonify({'error': 'Unauthorized access'}), 401)
 
 @app.errorhandler(Exception)
 def handle_error(error):
     # 处理异常并返回响应
-    return jsonify({"success":-1, "message":'{}'.format(error)}), 500
+    print(error)
+    return make_response(jsonify({"success":-1, "message":'{}'.format(error)}), 500)
 
 @app.route("/getAppJWT") 
 def getAppJWT():

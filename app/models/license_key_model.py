@@ -10,12 +10,21 @@ class LicenseKey(db.Model):
     generated_at = db.Column(db.DateTime, nullable=False)
     revocation_at = db.Column(db.DateTime, nullable=True)
     
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    
+    def is_unactive(self):
+        return self.state == 0
 
     def can_use(self):
         return self.state == 1
     
+    def is_revoke(self):
+        return self.state == 3
+    
+    def is_expired(self):
+        return self.state == 2
+    
     def is_invalid(self):
-        return self.state == 2 or self.state == 3
+        return self.is_expired() or self.is_revoke()
 

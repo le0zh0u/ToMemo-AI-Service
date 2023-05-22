@@ -1,0 +1,8 @@
+
+### open ai completion
+POST http://127.0.0.1:5000/licensekey/regenerate HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ5OTY4MiwianRpIjoiZTFjN2Y4MDMtYmU2MC00M2JmLTllOTYtOTk2ZWI1ZjQ2MTUxIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiI4MENEQjk3Qy03M0Y0LTQ0QjctQjEyMi0xQzAxNjg1RTBGMjAiLCJuYmYiOjE2ODQ0OTk2ODIsImV4cCI6MTY4NzA5MTY4Mn0.WGY0Hcs7Og-C3vgWcXtnp6Bnpy38IV0Eo5eBvoiZWC8
+{
+    "licneseKey":""
+}

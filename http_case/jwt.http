@@ -1,0 +1,24 @@
+
+### root request
+GET http://127.0.0.1:5000/ HTTP/1.1
+
+### generate token
+POST http://127.0.0.1:5000/token/generate HTTP/1.1
+content-type: application/json
+
+{
+    "uniqueUserId":"80CDB97C-73F4-44B7-B122-1C01685E0F20",
+    "licenseKey":"AC1AEEF58D6D4CA99D4ED9E4B1AB39F5"
+}
+
+## refresh token
+POST http://127.0.0.1:5000/token/refresh HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ5OTY4MiwianRpIjoiZTFjN2Y4MDMtYmU2MC00M2JmLTllOTYtOTk2ZWI1ZjQ2MTUxIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOiI4MENEQjk3Qy03M0Y0LTQ0QjctQjEyMi0xQzAxNjg1RTBGMjAiLCJuYmYiOjE2ODQ0OTk2ODIsImV4cCI6MTY4NzA5MTY4Mn0.WGY0Hcs7Og-C3vgWcXtnp6Bnpy38IV0Eo5eBvoiZWC8
+
+### test jwt token
+GET http://127.0.0.1:5000/protected HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDQ5OTg4MywianRpIjoiMjAwYzYxMzYtZDBhMi00Mzc5LTk0MTktYWE4MTg2MGMxZWRjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgwQ0RCOTdDLTczRjQtNDRCNy1CMTIyLTFDMDE2ODVFMEYyMCIsIm5iZiI6MTY4NDQ5OTg4MywiZXhwIjoxNjg0NTg2MjgzfQ.0NEbMs8qmjUYRmbucJrv7PBAPKCUFxlvMh8qVtonCjY
+
+
+

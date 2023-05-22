@@ -40,3 +40,30 @@ def active_license_key_with_expired_at(id: int, expired_at: datetime):
     key.updated_at = datetime.now()
 
     mysql.session.commit()
+
+def get_license_key_by_key(key: str):
+    return LicenseKey.query.filter_by(license_key = key).first()
+
+def revoke_license_key(key: str):
+    license_key = get_license_key_by_key(key)
+
+    if not license_key:
+        return 
+    
+    license_key.revocation_at = datetime.now()
+    license_key.state = 3
+    license_key.updated_at = datetime.now()
+
+    mysql.session.commit()
+
+
+def active_license_key(key_id: int):
+    license_key = get_license_key_by_id(key_id)
+
+    if not license_key:
+        return 
+    
+    license_key.state = 1
+    license_key.updated_at = datetime.now()
+
+    mysql.session.commit()

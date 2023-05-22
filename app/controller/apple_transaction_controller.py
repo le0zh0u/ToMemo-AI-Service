@@ -32,13 +32,14 @@ def syncTransaction():
         print(f"出现异常 - {error}")
         return jsonify({"successs":-1, "message":"苹果单据同步失败"}), 200, {'Content-Type': 'application/json;charset=utf-8'}
     
-   # 校验订单是否存在
-    app_transaction = get_by_transaction_id(subscription.transactionId)
-    if not app_transaction:
-        # 订单不存在，新建订单
-        generate_transaction(trans)
-    
     if subscription_status:
+
+        # 校验订单是否存在
+        app_transaction = get_by_transaction_id(subscription.transactionId)
+        if not app_transaction:
+            # 订单不存在，新建订单
+            generate_transaction(trans)
+
         # 判断订单是否关联LicenseKey
         rel = get_by_original_transaction_id(id=original_transaction_id)
         if not rel: 

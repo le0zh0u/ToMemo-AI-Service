@@ -37,13 +37,16 @@ def get_active_subscription_last_transaction(original_transaction_id):
     else:
         return filter_ai_service_subscription_transaction(active_last_transactions)
     
+#过滤非AI订阅的订单
 def filter_ai_service_subscription_transaction(transactions: list[SubscriptionStatusGroupTransaction]):
 
     if len(transactions) == 0:
         return 
-    
+    print(len(transactions))
     product_group_id = os.environ.get("AI_SUBSCRIPTION_PRODUCT_GROUP_ID")
-    return [t for t in transactions if t.subscriptionGroupIdentifier == product_group_id ]
+    list = [t for t in transactions if t.transactionInfo.subscriptionGroupIdentifier == product_group_id ]
+    print(len(list))
+    return list
     
     
     
