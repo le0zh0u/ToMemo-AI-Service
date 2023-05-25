@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, make_response
 from dotenv import find_dotenv, load_dotenv
 from flask_jwt_extended import JWTManager
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from datetime import timedelta
 import os
 from db.db import connect_to_mysql, mysql
@@ -35,6 +37,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.environ.get("SQLALCHEMY_TRACK_MODIFICATIONS")
 
 app.config['JSON_AS_ASCII'] = False
+
+# 配置限流参数
+app.config["RATELIMIT_HEADERS_ENABLED"] = True
+app.config["RATELIMIT_STORAGE_URL"] = "memory://"
+app.config["RATELIMIT_DEFAULT"] = "10/minute"  # 每分钟最多允许 10 个请求
+
+# 创建 Limiter 实例
+limiter = Limiter(key_func=get_remote_address, app=app)
 
 # init db
 connect_to_mysql(app)

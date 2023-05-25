@@ -5,15 +5,38 @@ GET http://127.0.0.1:5000/ HTTP/1.1
 ### open ai completion
 POST http://127.0.0.1:5000/completions HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDc2NTkxNSwianRpIjoiN2Q5MWUwODMtZjkxZS00YmVhLWFlODAtOTNmOTgyMTZlNTUyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgwQ0RCOTdDLTczRjQtNDRCNy1CMTIyLTFDMDE2ODVFMEYyMCIsIm5iZiI6MTY4NDc2NTkxNSwiZXhwIjoxNjg0ODUyMzE1fQ.CF9T4DkgJ7xMXeNL7e2_Flru-jQkzGqkJX2afLxY8Tc
 
 {
     "message": "tell me what is embedding",
     "channelSubject": "you are a special AI assistant, you can answer me any question."
 }
 
+### open ai completion stream
+POST http://127.0.0.1:5000/v1/chat/completions HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NTAyMTE5NCwianRpIjoiYjY5ZjFiYmMtNTJhZS00ODg1LTliZGUtMjRiNDI1ZTdhYmRlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgwQ0RCOTdDLTczRjQtNDRCNy1CMTIyLTFDMDE2ODVFMEYyMCIsIm5iZiI6MTY4NTAyMTE5NCwiZXhwIjoxNjg1MTA3NTk0fQ.lrFRfk6mvtqFqcxHsMSc7E99YGXqm2DYwx7prm639-E
+
+{
+    "messages": [{"role":"user", "content":"tell me what is embedding"}],
+    "channelSubject": "you are a special AI assistant, you can answer me any question."
+}
+
+
+### open ai completion stream proxy
+POST http://127.0.0.1:5000/proxy/v1/chat/completions HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDc2NTkxNSwianRpIjoiN2Q5MWUwODMtZjkxZS00YmVhLWFlODAtOTNmOTgyMTZlNTUyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgwQ0RCOTdDLTczRjQtNDRCNy1CMTIyLTFDMDE2ODVFMEYyMCIsIm5iZiI6MTY4NDc2NTkxNSwiZXhwIjoxNjg0ODUyMzE1fQ.CF9T4DkgJ7xMXeNL7e2_Flru-jQkzGqkJX2afLxY8Tc
+
+{
+    "messages": [{"role":"user", "content":"tell me what is embedding"}],
+    "channelSubject": "you are a special AI assistant, you can answer me any question."
+}
+
 ### open ai completion
 POST http://127.0.0.1:5000/chat HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY4NDc2NTkxNSwianRpIjoiN2Q5MWUwODMtZjkxZS00YmVhLWFlODAtOTNmOTgyMTZlNTUyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjgwQ0RCOTdDLTczRjQtNDRCNy1CMTIyLTFDMDE2ODVFMEYyMCIsIm5iZiI6MTY4NDc2NTkxNSwiZXhwIjoxNjg0ODUyMzE1fQ.CF9T4DkgJ7xMXeNL7e2_Flru-jQkzGqkJX2afLxY8Tc
 
 {
     "messages": [{"role":"user", "content":"tell me what is embedding"}],
